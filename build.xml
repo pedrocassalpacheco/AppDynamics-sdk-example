@@ -1,0 +1,26 @@
+<project name="Simple Server" default="dist" basedir=".">
+  <!-- set global properties for this build -->
+  <property name="src" location="src/simpleserver.c"/>
+  <property name="build" location="build"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the source">
+    	<exec dir= "." executable="gcc">
+		<arg line ="${src}"/>
+		<arg line ="-o"/>
+		<arg line ="${build}/simpleserver"/>
+		<arg line ="-L/opt/AppDynamics/Agents/appdynamics-sdk-native/sdk_lib/libi"/>
+		<arg line ="-lappdynamics_native_sdk"/>   
+	</exec>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+  </target>
+</project>
